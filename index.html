@@ -6,9 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>QREX Bugs</title>
+    <title>QREX Bugs test</title>
 </head>
 <body>
+
+    <script>
+
+
+
+
+    </script>
     
 <style>.header{height: 100px;}
 
@@ -21,19 +28,57 @@ font-size:10px ; color: rgba(12, 21, 75, 0.815);text-align: center;font-family: 
 }
 
 
-
-
-
-
-
 </style>
 <div class="header"><img src="logo.png" alt="" style="width: 140px;">
 <span style="position:absolute;top: 10px;left: 190px;color: #1d4289; font-size: 25px; font-family: 'Trebuchet MS';text-shadow: 2px 3px rgb(0 0 1 / 10%);"><strong>QREX BUGS ISSUE LOG (bETA)</strong> </span>
 
 
+
+
+
 </div>
 
-<iframe width="100%" height="700" frameborder="0" scrolling="no" src="https://github.com/users/azrfl/projects/1/views/1"></iframe>
+<script >
+
+
+// Set the repository name, access token, and table file name
+const repo_name = "QREX Helpdesk";
+const access_token = "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";
+const table_file = "table.html";
+
+// Use the fetch function to fetch the contents of the table file
+const url = `https://api.github.com/repos/azrfl/${repo_name}/contents/${table_file}`;
+const headers = {
+  Authorization: `Token ${access_token}`
+};
+fetch(url, { headers: headers })
+  .then((response) => {
+    // parse the JSON data from the API response
+    return response.json();
+  })
+  .then((data) => {
+    // decode the content from base64 encoded format
+    let decodedContent = atob(data.content);
+    // select the table element to insert the data
+    let table = document.getElementById("table");
+    // insert the data in the table
+    table.innerHTML = decodedContent;
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+
+
+</script>
+
+
+
+<table id="table"></table>
+
+
+
+
 <div class="blocker">
 <P>Terms of Use</P>
     By accessing or using this website, you agree to be bound by the following terms and conditions ("Terms of Use"). If you do not agree to these Terms of Use, please do not use this website.
