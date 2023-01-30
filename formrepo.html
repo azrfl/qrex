@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+function submitnye() {
+  event.preventDefault();
+  var title = $("#issue-title").val();
+  var body = $("#issue-body").val();
+  var repository = "azrfl/qrex"; // Replace with the owner and repo name of the repository you want to add the issue to
+  var token = "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"; // Replace with your Github personal access token
+  var data = {
+    title: title,
+    body: body,
+    assignees: ["azrfl"]
+  };
+  $.ajax({
+    type: "POST",
+    url: "https://api.github.com/repos/" + repository + "/issues",
+    data: JSON.stringify(data),
+    headers: {
+      "Authorization": "Token " + token,
+      "Content-Type": "application/json"
+    },
+    success: function(response) {
+        alert("Issue created successfully!");
+  document.getElementById("new-issue-form").reset();
+    },
+    error: function(response) {
+        alert("Error creating issue: " + response.responseJSON.message);
+    }
+  });
+}
+
+
+
+</script>
+
+
+
+</head>
+<body>
+    <h1>custom Form Azraful</h1>
+    <form id="new-issue-form">
+        <label for="issue-title">Title:</label>
+        <input type="text" id="issue-title" name="issue-title">
+        <br>
+        <label for="issue-body">Body:</label>
+        <textarea id="issue-body" name="issue-body"></textarea>
+        <br>
+        <button type="submit" onclick="submitnye()">Submit</button>
+      </form>
+
+
+
+
+
+<style>
+
+    /* Form container */
+#new-issue-form {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+}
+
+/* Form group container */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Form label */
+label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Form input and textarea */
+input, textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+/* Submit button */
+button {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+</style>
+
+
+</body>
+</html>
